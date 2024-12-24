@@ -1,0 +1,75 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+.scale-103:hover {
+  transform: scale(1.03);
+  transition: transform 0.2s ease-in-out;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.navbar {
+  background-color: #725c72;
+
+}
+
+
+.menu-item .nav-link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  padding-bottom: 10px; /* Ajoute un espace pour la ligne */
+}
+
+.menu-item .nav-link::after {
+  content: ""; /* Pseudo-élément vide pour la ligne */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px; /* Épaisseur de la ligne */
+  background-color: #ffffff; /* Couleur de la ligne (rouge) */
+  transition: width 0.4s ease-in-out; /* Animation fluide */
+}
+
+.menu-item .nav-link:hover::after {
+  width: 100%; /* Ligne pleine au survol */
+}
+.footer {
+  box-shadow:  0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  

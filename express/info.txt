@@ -1,0 +1,73 @@
+// delete package.json
+//mkdir myyapp
+// npm init permet de creer package.json sans le remplir par defaut
+// npm init -y permet de creer package.json en le remplissons
+
+#setUp
+npm init -y
+This initializes a new Node.js project and creates a package.json file.
+
+npm install express
+When you run the command npm install express, it installs the Express.js framework and its dependencies in your project. Here's what happens in detail:
+
+1. Installs Express.js
+The npm install express command installs the latest version of the Express.js.
+2. Creates or Updates node_modules Folder
+A node_modules folder is created if it doesn't already exist. This folder will contain Express.js and all of its dependencies.
+3. Adds to package.json
+Express.js is added to your project's package.json file under the dependencies section. This file keeps track of the libraries and versions you're using.
+4. Generates a package-lock.json
+If not already present, npm generates a package-lock.json file. This file contains detailed information about the exact version of each package installed, including the versions of any sub-dependencies (packages that Express depends on).
+
+
+
+ to restart automatically when you make changes, install nodemon:
+
+npm install -g nodemon
+
+nodemon server.js
+
+npm install bootstrap
+
+jsonwebtoken : pour générer et vérifier les tokens JWT.
+
+npx : Un outil fourni avec npm qui exécute les paquets Node.js sans les installer globalement.
+
+
+
+Pour récupérer l’ID du bouquet « liké » du côté backend,
+ on peut utiliser les paramètres de la requête.
+l'ID du bouquet est envoyé comme un paramètre de requête id dans l'URL,
+ et on peut l'obtenir via req.query.id dans Express.
+
+ Problèmes courants de connexion entre frontend et backend ExpressJS
+
+Par défaut, les navigateurs bloquent les requêtes entre différentes origines (par exemple, frontend sur localhost:3000 et backend sur localhost:5000) pour des raisons de sécurité.
+ Cela provoque une erreur de type CORS.
+Solution : Utiliser le middleware cors dans Express pour autoriser les requêtes depuis l'origine du frontend.
+
+un mécanisme de sécurité des navigateurs qui empêche une page web de faire des requêtes vers un domaine différent de celui où elle a été chargée,
+
+
+In Express, you do not need to store the JWT on the server. The idea behind JWT is that the server doesn't store session data, so the token itself carries all the information necessary to authenticate and authorize a user. This allows your application to be stateless.
+
+How JWT Validation Works
+JWT Generation (on the backend):
+
+After the user logs in with their credentials, the backend generates a JWT and sends it to the client (usually in the response body or an HTTP-only cookie).
+The JWT contains a payload with user data (like user ID, roles, etc.) and a signature (created using a secret key and an algorithm, e.g., HMAC SHA256).
+JWT Validation (on every request):
+
+Whenever the frontend sends a request to a protected route (e.g., with a JWT in the Authorization header or an HTTP-only cookie), the backend needs to validate the token.
+The backend doesn’t need to store the token. Instead, it checks if the token is valid by:
+Verifying the signature (using the secret or public key, depending on whether the token is signed with a symmetric or asymmetric key).
+Checking the expiration (exp) field in the payload to ensure the token hasn’t expired.
+Ensuring the token is properly formatted.
+JWT Expiration:
+
+JWTs often have an expiration time (exp), and the server will check this when validating the token.
+If the token has expired, the backend will reject the request and prompt the user to log in again or use a refresh token.
+How Does the Frontend Know if JWT Is Expired or Altered?
+Frontend: The frontend doesn’t validate the JWT. It simply sends it to the backend for validation. If the token is expired or invalid (altered, malformed, etc.), the backend will return an error (usually a 401 Unauthorized response).
+
+Backend: The backend is responsible for validating the JWT by checking its signature and expiration, ensuring the token hasn’t been altered.
