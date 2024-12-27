@@ -7,6 +7,7 @@ const Bouquet = sequelize.define("Bouquet", {
   image: { type: DataTypes.STRING },
   price: { type: DataTypes.FLOAT, allowNull: false },
   likes: { type: DataTypes.INTEGER, defaultValue: 0 },
+  
 });
 
 module.exports = Bouquet;

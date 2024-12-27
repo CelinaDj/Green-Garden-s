@@ -6,6 +6,7 @@ const Fleur = sequelize.define("Fleur", {
   description: { type: DataTypes.STRING },
   image: { type: DataTypes.STRING },
   price: { type: DataTypes.FLOAT, allowNull: false },
+  likes: { type: DataTypes.INTEGER, defaultValue: 0 },
 });
 
 module.exports = Fleur;

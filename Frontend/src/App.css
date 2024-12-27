@@ -72,4 +72,119 @@
 .footer {
   box-shadow:  0 6px 12px rgba(0, 0, 0, 0.2);
   }
-  
+/* Appliquer un flou à l'arrière-plan du body ou du conteneur principal */
+.backdrop.blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px); /* Flou de l'arrière-plan */
+  z-index: 1040; /* Placer l'élément au-dessus du contenu principal mais en dessous du modal */
+}
+
+.modal-content {
+  filter: none !important; /* Pas de flou sur le contenu du modal */
+}
+
+
+/* Container des fleurs dans le modal */
+.flowers-container {
+  position: relative;
+  height: 200px; /* Ajustez selon la taille souhaitée pour l'image */
+  overflow: hidden;
+}
+
+/* Animation des fleurs */
+.flower-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: rotateFlowers 12s infinite; /* Animation */
+}
+
+@keyframes rotateFlowers {
+  0% { opacity: 1; }
+  25% { opacity: 0; }
+  50% { opacity: 1; }
+  75% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
+
+/* Conteneur des fleurs */
+/* Positionner l'image de la fleur dans le coin supérieur droit */
+.flower-image-container {
+  margin-right: 963px;
+  position: absolute;
+  top: 170px;  /* Distance du coin supérieur */
+  right: 10px; /* Distance du coin droit */
+  z-index: 1; /* S'assurer que l'image est au-dessus du contenu du modal */
+}
+
+.flower-image {
+top:100px;  
+  width: 80px;  /* Taille de l'image */
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%; /* Si tu veux que l'image ait une forme ronde */
+}
+
+
+/* Animation pour faire tourner les fleurs
+@keyframes rotateFlowers {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+} */
+
+/* Si tu veux ajouter plusieurs fleurs animées */
+.flower-image-container:nth-child(2) {
+  top: 60px;
+  left: 20px;
+  animation: rotateFlowers 12s infinite;
+}
+
+.flower-image-container:nth-child(3) {
+  top: 100px;
+  left: 30px;
+  animation: rotateFlowers 15s infinite;
+}
+
+.flower-image-container:nth-child(4) {
+  top: 150px;
+  left: 40px;
+  animation: rotateFlowers 20s infinite;
+}
+
+
+
+
+
+
+
+
+
+
+
+.modal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1; /* Derrière le contenu du modal */
+}
+
+.background-flower {
+  position: absolute;
+  opacity: 0.5; /* Rendre les fleurs légèrement transparentes */
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* Empêcher l'interaction avec les fleurs */
+}
+
+
+

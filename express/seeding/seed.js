@@ -33,12 +33,14 @@ async function insertTestData() {
         description: "Une belle rose",
         price: 50.0,
         image:"rose.jpeg",
+        likes: 0,
       });
       fleur2 = await Fleur.create({
         name: "Fleur tulipe",
         description: "une belle tulipe",
         price: 40.0,
           image:"tulipe.jpeg",
+          likes: 0,
       });
       
       fleur3 = await Fleur.create({
@@ -46,6 +48,7 @@ async function insertTestData() {
         description: "une belle fleur lys",
         price: 40.0,
           image:"lys.jpeg",
+          likes: 0,
       });
     
       fleur4 = await Fleur.create({
@@ -53,6 +56,7 @@ async function insertTestData() {
         description: "une magnifique Orchidée",
         price: 30.0,
         image:"Orchidée.jpeg",
+        likes: 0,
       });
       console.log("Flowers inserted:");
     }

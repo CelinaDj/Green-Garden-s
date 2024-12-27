@@ -1,13 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFleurs } from "../state/fleur-slice";
+import {  FaSpinner } from "react-icons/fa";
 import { selectToken } from "../state/auth-slice";
+import { addToCart } from "../state/cart-slice";
+import {
+  isAuthenticated,
 
+} from "../state/auth-slice";
 
 const Fleurs = () => {
   const dispatch = useDispatch();
+  const [loadingId, setLoadingId] = useState();
+    const authenticated = useSelector(isAuthenticated);
   const { fleurs, loading, error } = useSelector((state) => state.fleurs);
-  const token = useSelector(selectToken);
+  const token = useSelector(selectToken); 
+   const handleAddToCart = (bouquet) => {
+      setLoadingId(bouquet.id);
+      dispatch(addToCart(bouquet));
+      setTimeout(() => {
+        setLoadingId(null);
+      }, 1000);
+    };
   useEffect(() => {
     dispatch(fetchFleurs(token));
   }, [token]);
@@ -22,7 +36,10 @@ const Fleurs = () => {
 
   return (
     <section className="container py-5">
-      <h1 className="text-center mb-4 animate__animated animate__zoomIn animate__delay-1s" style={{ marginTop: "50px" }}>
+      <h1
+        className="text-center mb-4 animate__animated animate__zoomIn animate__delay-1s"
+        style={{ marginTop: "50px" }}
+      >
         Nos Meilleurs Fleurs
       </h1>
       <div className=" row g-4">
@@ -76,7 +93,18 @@ const Fleurs = () => {
                     Prix: {fleur.price} da
                   </p>
                 )}
-                
+                <button
+                  className="btn btn-dark w-100 mt-2"
+                  style={{ backgroundColor: "#725c72" }}
+                  onClick={() => handleAddToCart(fleur)}
+                  disabled={loadingId === fleur.id || !authenticated}
+                >
+                  {loadingId === fleur.id ? (
+                    <FaSpinner className="fa-spin" size={24} color="white" />
+                  ) : (
+                    "Ajouter au panier"
+                  )}
+                </button>
               </div>
             </div>
           </div>
